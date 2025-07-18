@@ -1,4 +1,4 @@
-## Application Details
+## Application Details   ::: 
 |               |
 | ------------- |
 |**Generation Date and Time**<br>Fri Jul 18 2025 04:35:50 GMT+0000 (Coordinated Universal Time)|
