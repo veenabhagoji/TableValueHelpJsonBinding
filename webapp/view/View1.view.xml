@@ -1,0 +1,135 @@
+<mvc:View
+    controllerName="employeelist.controller.View1"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants">
+    
+    <f:DynamicPage headerExpanded="{/headerExpanded}">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <svm:SmartVariantManagement id="svm" showExecuteOnSelection="true" />
+                </f:heading>
+                <f:expandedContent>
+                    <Label id="expandedLabel" text="No filters active" />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <Label id="snappedLabel" text="No filters active" />
+                </f:snappedContent>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <f:header>
+            <f:DynamicPageHeader>
+                <f:content>
+                    <fb:FilterBar id="filterbar" 
+                        persistencyKey="myPersKey" 
+                        useToolbar="false" 
+                        search=".onSearch" 
+                        filterChange=".onFilterChange" 
+                        afterVariantLoad=".onAfterVariantLoad">
+                        
+                        <fb:filterItems>
+                            <!-- Employee Name Filter -->
+                            <fb:FilterItem name="Name" label="Employee Name">
+                                <fb:control>
+                                    
+                                        <Input id="idNameInput" placeholder="Select Employee Name" showValueHelp="true" valueHelpRequest=".onNameValueHelp"
+
+                                        
+                                        value="{
+                                             'employeeModel>/employeeNames'
+                                        }">
+                                        
+                                    </Input>
+                                </fb:control>
+                            </fb:FilterItem>
+
+                            <!-- Category Filter -->
+                            <fb:FilterItem name="Designation" label="Designation">
+                                <fb:control>
+                                    <Input id="idDesignationEmployee" placeholder="Select Employee Designation" showValueHelp="true" valueHelpRequest=".onDesignationValueHelp"
+
+                                        value="{
+                                            'employeeModel>/designations',
+                                            
+                                        }">
+                                        
+                                    </Input>
+                                </fb:control>
+                            </fb:FilterItem>
+
+                          
+                                
+                        
+                        </fb:filterItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+            <Table id="employeeTable" items="{employeeModel>/employees}">
+                <infoToolbar>
+                    <OverflowToolbar>
+                        <Label text="Employee List"/>
+                    </OverflowToolbar>
+                </infoToolbar>
+
+                <columns>
+                    <Column width="12em">
+                        <Text text="Employee ID" />
+                    </Column>
+                    <Column>
+                        <Text text="First Name" />
+                    </Column>
+                    <Column>
+                        <Text text="Last Name" />
+                    </Column>
+                    <Column>
+                        <Text text="Designation" />
+                    </Column>
+                    <Column>
+                        <Text text="Department" />
+                    </Column>
+                    <Column>
+                        <Text text="Email" />
+                    </Column>
+                    <Column>
+                        <Text text="Contact Number" />
+                    </Column>
+                    <Column>
+                        <Text text="Location" />
+                    </Column>
+                    <Column>
+                        <Text text="Status" />
+                    </Column>
+                    <Column>
+                        <Text text="Salary" />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{employeeModel>employeeId}" />
+                            <Text text="{employeeModel>firstName}" />
+                            <Text text="{employeeModel>lastName}" />
+                            <Text text="{employeeModel>designation}" />
+                            <Text text="{employeeModel>department}" />
+                            <Text text="{employeeModel>email}" />
+                            <Text text="{employeeModel>contactNumber}" />
+                            <Text text="{employeeModel>location}" />
+                            <Text text="{employeeModel>status}" />
+                            <Text text="{employeeModel>salary}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

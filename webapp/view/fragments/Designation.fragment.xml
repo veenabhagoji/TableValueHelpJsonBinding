@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <SelectDialog
+        id="idDesignation"
+        title="Select Employee Designation"
+        items="{employeeModel>/designations}"
+        search=".onDesignationValueHelpSerach"
+        confirm=".onDesignationValueHelpConfirm"
+        cancel=".onValueHelpCancel">
+        <StandardListItem
+            title="{employeeModel>name}"
+            description="{employeeModel>key}" />
+    </SelectDialog>
+</core:FragmentDefinition>

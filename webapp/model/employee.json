@@ -1,0 +1,65 @@
+{
+    "employees": [
+    {
+      "employeeId": "E001",
+      "firstName": "John",
+      "lastName": "Doe",
+      "designation": "Software Engineer",
+      "department": "IT",
+      "email": "john.doe@example.com",
+      "contactNumber": "9876543210",
+      "location": "Bangalore",
+      "status": "Active",
+      "salary": 75000
+    },
+    {
+      "employeeId": "E002",
+      "firstName": "Priya",
+      "lastName": "Sharma",
+      "designation": "UI/UX Designer",
+      "department": "Design",
+      "email": "priya.sharma@example.com",
+      "contactNumber": "9123456780",
+      "location": "Pune",
+      "status": "Active",
+      "salary": 68000
+    },
+    {
+      "employeeId": "E003",
+      "firstName": "Michael",
+      "lastName": "Smith",
+      "designation": "Project Manager",
+      "department": "Management",
+      "email": "michael.smith@example.com",
+      "contactNumber": "9988776655",
+      "location": "Hyderabad",
+      "status": "Inactive",
+      "salary": 95000
+    },
+    {
+      "employeeId": "E004",
+      "firstName": "Ananya",
+      "lastName": "Rao",
+      "designation": "Quality Analyst",
+      "department": "QA",
+      "email": "ananya.rao@example.com",
+      "contactNumber": "9871234560",
+      "location": "Chennai",
+      "status": "Active",
+      "salary": 62000
+    },
+    {
+      "employeeId": "E005",
+      "firstName": "David",
+      "lastName": "Williams",
+      "designation": "DevOps Engineer",
+      "department": "IT",
+      "email": "david.williams@example.com",
+      "contactNumber": "9090909090",
+      "location": "Mumbai",
+      "status": "Inactive",
+      "salary": 80000
+    }
+  ]
+}
+  
