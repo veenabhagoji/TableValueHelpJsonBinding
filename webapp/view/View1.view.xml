@@ -81,7 +81,7 @@
                 </infoToolbar>
 
                 <columns>
-                    <Column width="12em">
+                    <Column width="12em"  hAlign="Center">
                         <Text text="Employee ID" />
                     </Column>
                     <Column>
@@ -96,8 +96,8 @@
                     <Column>
                         <Text text="Department" />
                     </Column>
-                    <Column>
-                        <Text text="Email" />
+                    <Column  width="15em">
+                        <Text text="Email"/>
                     </Column>
                     <Column>
                         <Text text="Contact Number" />
@@ -124,7 +124,10 @@
                             <Text text="{employeeModel>email}" />
                             <Text text="{employeeModel>contactNumber}" />
                             <Text text="{employeeModel>location}" />
-                            <Text text="{employeeModel>status}" />
+                          <ObjectStatus 
+                         text="{employeeModel>status}" 
+                         state="{path:'employeeModel>status', formatter: '.formatter.formatStatusState'}" />
+
                             <Text text="{employeeModel>salary}" />
                         </cells>
                     </ColumnListItem>

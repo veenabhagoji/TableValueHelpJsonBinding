@@ -3,11 +3,15 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/ui/core/Fragment"
-], (Controller, JSONModel, Filter, FilterOperator, Fragment) => {
+    "sap/ui/core/Fragment",
+    "employeelist/util/formatter"
+], (Controller, JSONModel, Filter, FilterOperator, Fragment, formatter) => {
     "use strict";
 
     return Controller.extend("employeelist.controller.View1", {
+
+        formatter: formatter,
+
         onInit() {
             var oModel = new JSONModel();
             let data = {
