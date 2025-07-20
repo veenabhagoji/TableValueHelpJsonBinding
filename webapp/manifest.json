@@ -79,12 +79,24 @@
           "target": [
             "TargetView1"
           ]
+        },
+        {
+          "name": "EmployeeDetail",
+          "pattern": "EmployeeDetail/{id}",
+          "target": [
+           "EmployeeDetail"
+            
+          ]
         }
       ],
       "targets": {
         "TargetView1": {
           "id": "View1",
           "name": "View1"
+        },
+        "EmployeeDetail": {
+          "id": "IdEmployeeDetail",
+          "name": "EmployeeDetails"
         }
       }
     },

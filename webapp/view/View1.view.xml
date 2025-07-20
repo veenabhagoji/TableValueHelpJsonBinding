@@ -8,7 +8,7 @@
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:svm="sap.ui.comp.smartvariants">
     
-    <f:DynamicPage headerExpanded="{/headerExpanded}">
+    <f:DynamicPage headerExpanded="{/headerExpanded}" showFooter="true" id="IdDynamic">
         <f:title>
             <f:DynamicPageTitle>
                 <f:heading>
@@ -35,7 +35,7 @@
                         
                         <fb:filterItems>
                             <!-- Employee Name Filter -->
-                            <fb:FilterItem name="Name" label="Employee Name">
+                            <fb:FilterItem name="Name" label="{i18n>EmployeeName}">
                                 <fb:control>
                                     
                                         <Input id="idNameInput" placeholder="Select Employee Name" showValueHelp="true" valueHelpRequest=".onNameValueHelp"
@@ -73,11 +73,18 @@
         </f:header>
 
         <f:content>
-            <Table id="employeeTable" items="{employeeModel>/employees}">
+            <Table id="employeeTable" items="{employeeModel>/employees}" 	mode="SingleSelectLeft">
+        
                 <infoToolbar>
                     <OverflowToolbar>
                         <Label text="Employee List"/>
+                        	<ToolbarSpacer/>
+                            <Button type="Emphasized" text="{i18n>btnAA}" press="onClick"></Button>
+                            <Button  type="Reject" text="{i18n>btnBB}" press="onClick"></Button>
+                            <Button  type="Success" text="{i18n>btnCC}" press="onClick"></Button>
                     </OverflowToolbar>
+
+                    	
                 </infoToolbar>
 
                 <columns>
@@ -114,7 +121,7 @@
                 </columns>
 
                 <items>
-                    <ColumnListItem>
+                    <ColumnListItem press="onRowPress" type="Navigation">
                         <cells>
                             <Text text="{employeeModel>employeeId}" />
                             <Text text="{employeeModel>firstName}" />
@@ -123,7 +130,7 @@
                             <Text text="{employeeModel>department}" />
                             <Text text="{employeeModel>email}" />
                             <Text text="{employeeModel>contactNumber}" />
-                            <Text text="{employeeModel>location}" />
+                            <Input value="{employeeModel>location}" editable="false" />
                           <ObjectStatus 
                          text="{employeeModel>status}" 
                          state="{path:'employeeModel>status', formatter: '.formatter.formatStatusState'}" />
@@ -133,6 +140,15 @@
                     </ColumnListItem>
                 </items>
             </Table>
+            	
         </f:content>
+         <f:footer>
+			<OverflowToolbar>
+			<ToolbarSpacer />
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>
     </f:DynamicPage>
+   
 </mvc:View>

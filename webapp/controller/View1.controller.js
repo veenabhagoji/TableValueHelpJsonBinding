@@ -4,15 +4,17 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/core/Fragment",
-    "employeelist/util/formatter"
-], (Controller, JSONModel, Filter, FilterOperator, Fragment, formatter) => {
+    "employeelist/util/formatter",
+      "sap/m/MessageBox"
+], (Controller, JSONModel, Filter, FilterOperator, Fragment, formatter, MessageBox) => {
     "use strict";
-
+   
     return Controller.extend("employeelist.controller.View1", {
 
         formatter: formatter,
-
+         
         onInit() {
+           this.oResourceBundle =  this.getOwnerComponent().getModel("i18n")
             var oModel = new JSONModel();
             let data = {
                 employees: [
@@ -40,6 +42,7 @@ sap.ui.define([
 
             oModel.setData(data);
             this.getView().setModel(oModel, "employeeModel");
+            
         },
 
         // Name Value Help
@@ -192,7 +195,49 @@ sap.ui.define([
         
             // Optional: Show message
             sap.m.MessageToast.show("Filters applied");
+        },
+
+        onRowPress: function(oEvent) {
+
+            let oRouter = this.getOwnerComponent().getRouter();
+          
+          
+                let oSelectedItem = oEvent.getSource();
+                let oContext= oSelectedItem.getBindingContext('employeeModel')?.getObject();
+                let sEmployeeId = oContext.employeeId;
+            
+                sap.m.MessageToast.show("Selected EmployeeId: " + sEmployeeId);
+
+                oRouter.navTo("EmployeeDetail", {
+                    id :sEmployeeId
+                });
+            
+            
+        },
+
+        onClick: function(oEvent){
+            let oSelectedButton = oEvent.getSource().getText();
+            let oSelectedButtonType = oEvent.getSource().getType();
+           let oResource =  this.oResourceBundle;
+           var oRes = this.getView().getModel("i18n").getResourceBundle();
+          
+          //  let sMessage = "Button Text: " + oSelectedButton + "\nButton Type: " + oSelectedButtonType;
+
+        //   let sMessage = "Button Text: " + oSelectedButton + "\nButton Type: " + oSelectedButtonType;
+
+            MessageBox.information(oRes.getText("ButtomMsg", [oSelectedButton, oSelectedButtonType]), {
+                title: "Button Info"
+            });
+             
+            let oDyanamicPage = this.byId('IdDynamic');
+            let oFooter = oDyanamicPage.getShowFooter();
+             if(oSelectedButton==='AA'){
+            oDyanamicPage.setShowFooter(false);
+             }else{
+                oDyanamicPage.setShowFooter(true);
+             }
         }
+    
         
         
 
