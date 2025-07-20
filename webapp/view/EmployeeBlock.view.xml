@@ -1,0 +1,9 @@
+<mvc:View controllerName="employeelist.controller.EmployeeBlock"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+ <Page id="IdEmployeeBlock">
+
+    <core:Fragment fragmentName="employeelist.fragments.SimpleForm" type="XML"/>
+ </Page>
+</mvc:View>
