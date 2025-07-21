@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <VBox>
+        <Label text="First Name"/>
+        <Text text="{employeeModel>/firstName}"/>
+
+        <Label text="Last Name"/>
+        <Text text="{employeeModel>/lastName}"/>
+
+        <Label text="Designation"/>
+        <Text text="{employeeModel>/designation}"/>
+
+        <Label text="Location"/>
+        <Text text="{employeeModel>/location}"/>
+    </VBox>
+</core:FragmentDefinition>

@@ -3,13 +3,14 @@
 	xmlns:layout="sap.ui.layout"
 	xmlns:m="sap.m"
 	xmlns:core="sap.ui.core"
+	
 	controllerName="employeelist.controller.EmployeeDetails"
 	height="100%">
 	<m:Page showNavButton="true" title="Employee Detail Page" navButtonPress="onNavBack">
 	<ObjectPageLayout id="ObjectPageLayout"
 		showTitleInHeaderContent="true"
 		showEditHeaderButton="true"
-		editHeaderButtonPress="handleEditBtnPress"
+		 editHeaderButtonPress=".handleEditBtnPress"
 		upperCaseAnchorBar="false">
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
@@ -47,7 +48,7 @@
 				</snappedTitleOnMobile>
 
 				<actions>
-					<m:OverflowToolbarButton icon="sap-icon://edit" text="edit header" type="Emphasized" tooltip="edit">
+					<m:OverflowToolbarButton icon="sap-icon://edit" text="edit header" type="Emphasized" tooltip="edit" press="handleEditBtnPress">
 						<m:layoutData>
 							<m:OverflowToolbarLayoutData priority="NeverOverflow"/>
 						</m:layoutData>
@@ -107,14 +108,22 @@
 					</heading>
 					<subSections>
 					<ObjectPageSubSection id="personalSectionSS1" title="Connect" titleUppercase="false">
-						<blocks>
+						<!-- <blocks>
 							<core:Fragment fragmentName="employeelist.view.fragments.SimpleForm" type="XML" />
-						</blocks>
-					</ObjectPageSubSection>
+						</blocks> -->
+						<m:VBox visible="true" id="EmployeeViewFragment">
+				<core:Fragment fragmentName="employeelist.view.fragments.EmployeeDisplay" type="XML" />
+	</m:VBox>
+	 <m:VBox visible="false" id="EmployeeEditFragment">
+ <core:Fragment fragmentName="employeelist.view.fragments.EmployeeEdit" type="XML" />
+		</m:VBox>
+	
+					</ObjectPageSubSection>  
 
 					<ObjectPageSubSection id="personalSectionSS2" title="Payment information" titleUppercase="false">
 						<blocks>
 						
+	
 						</blocks>
 						<moreBlocks>
 							

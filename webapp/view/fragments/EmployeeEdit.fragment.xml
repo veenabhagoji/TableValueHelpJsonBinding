@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+                         xmlns="sap.m"
+                         xmlns:layout="sap.ui.layout">
+  <VBox class="sapUiSmallMargin">
+    <Input value="{employeeModel>/firstName}" placeholder="First Name" width="100%" />
+    <Input value="{employeeModel>/lastName}" placeholder="Last Name" width="100%" />
+    
+    <Select selectedKey="{employeeModel>/designation}" width="100%">
+      <items>
+        <core:Item key="{designationModel>key}" text="{designationModel>name}" />
+      </items>
+    </Select>
+    
+    <Select selectedKey="{employeeModel>/location}" width="100%">
+      <items>
+        <core:Item key="{locationModel>key}" text="{locationModel>name}" />
+      </items>
+    </Select>
+    
+    <HBox justifyContent="End" class="sapUiSmallMarginTop">
+      <Button text="Save" type="Emphasized" press="onSavePress" />
+      <Button text="Cancel" type="Reject" press="onCancelPress" class="sapUiSmallMarginBegin" />
+    </HBox>
+  </VBox>
+</core:FragmentDefinition>

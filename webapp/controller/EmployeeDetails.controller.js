@@ -1,7 +1,9 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
-  "sap/ui/model/json/JSONModel"
-], (Controller, JSONModel) => {
+  "sap/ui/model/json/JSONModel",
+  "sap/m/MessageBox",
+  "sap/ui/core/Fragment",
+], (Controller, JSONModel, MessageBox, Fragment) => {
   "use strict";
 
   return Controller.extend("employeelist.controller.EmployeeDetails", {
@@ -54,6 +56,33 @@ sap.ui.define([
         oEmployeeModel.setProperty("/designation", selectedKey);
     },
 
+
+    handleEditBtnPress: function() {
+        MessageBox.confirm(
+            "Are you sure you want to edit this page?",
+            {
+                title: "Confirm Edit",
+                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                emphasizedAction: MessageBox.Action.YES,
+                onClose: (oAction) => {  // Use arrow function
+                    if (oAction === MessageBox.Action.YES) {
+                        this.visibilityModeEdit();
+                    }
+                }
+            }
+        );
+    },
+    
+
+    visibilityModeEdit:function(){
+const vbox1 =this.getView().byId("EmployeeViewFragment") ;  /// vuiew
+const vbox2 =this.getView().byId("EmployeeEditFragment") ;  /// edit
+
+vbox1.setVisible (false);
+vbox2.setVisible(true);
+
+    },
+    
       onNavBack: function () {
           let oRouter = this.getOwnerComponent().getRouter();
           oRouter.navTo("RouteView1");
