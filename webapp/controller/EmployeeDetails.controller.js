@@ -8,6 +8,8 @@ sap.ui.define([
 
   return Controller.extend("employeelist.controller.EmployeeDetails", {
       onInit() {
+        let oRouter = this.getOwnerComponent().getRouter();
+        oRouter.getRoute("EmployeeDetail").attachPatternMatched(this._onObjectMatched, this);
           // Employee Model (for form binding)
           const employeeData = {
               employeeId: "E001",
@@ -86,6 +88,17 @@ vbox2.setVisible(true);
       onNavBack: function () {
           let oRouter = this.getOwnerComponent().getRouter();
           oRouter.navTo("RouteView1");
-      }
+      },
+      _onObjectMatched: function(oEvent) {
+        var sEmployeeId = oEvent.getParameter("arguments").id;
+         var sEmployeeName = oEvent.getParameter("arguments").firstName;
+    
+        // Example usage
+       
+        alert("employee Id"+ sEmployeeId +"employee Name:"+ sEmployeeName);
+    
+      
+    },
+
   });
 });

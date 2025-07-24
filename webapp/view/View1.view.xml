@@ -32,7 +32,18 @@
                         search=".onSearch" 
                         filterChange=".onFilterChange" 
                         afterVariantLoad=".onAfterVariantLoad">
-                        
+                        <Toolbar>
+                        <ToolbarSpacer />
+
+                        <VBox class="sapUiSmallMargin">
+                        <Button text="Download Excel" icon="sap-icon://excel-attachment" press=".onDownloadExcel" />
+
+             </VBox>
+   
+
+   
+  
+                        </Toolbar>
                         <fb:filterItems>
                             <!-- Employee Name Filter -->
                             <fb:FilterItem name="Name" label="{i18n>EmployeeName}">

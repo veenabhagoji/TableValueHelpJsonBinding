@@ -5,8 +5,10 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "sap/ui/core/Fragment",
     "employeelist/util/formatter",
-      "sap/m/MessageBox"
-], (Controller, JSONModel, Filter, FilterOperator, Fragment, formatter, MessageBox) => {
+      "sap/m/MessageBox",
+      "sap/ui/export/Spreadsheet"
+    
+], (Controller, JSONModel, Filter, FilterOperator, Fragment, formatter, MessageBox, Spreadsheet ) => {
     "use strict";
    
     return Controller.extend("employeelist.controller.View1", {
@@ -200,26 +202,31 @@ sap.ui.define([
         onRowPress: function(oEvent) {
 
             let oRouter = this.getOwnerComponent().getRouter();
+           
           
           
                 let oSelectedItem = oEvent.getSource();
                 let oContext= oSelectedItem.getBindingContext('employeeModel')?.getObject();
                 let sEmployeeId = oContext.employeeId;
+              let sEmployeeName = oContext.firstName;
             
                 sap.m.MessageToast.show("Selected EmployeeId: " + sEmployeeId);
 
                 oRouter.navTo("EmployeeDetail", {
-                    id :sEmployeeId
+                    id :sEmployeeId,
+                    firstName: sEmployeeName
                 });
-            
-            
-        },
+            },
+               
+        
 
         onClick: function(oEvent){
             let oSelectedButton = oEvent.getSource().getText();
             let oSelectedButtonType = oEvent.getSource().getType();
            let oResource =  this.oResourceBundle;
            var oRes = this.getView().getModel("i18n").getResourceBundle();
+
+        //    this.onLoginPress();
           
           //  let sMessage = "Button Text: " + oSelectedButton + "\nButton Type: " + oSelectedButtonType;
 
@@ -236,7 +243,88 @@ sap.ui.define([
              }else{
                 oDyanamicPage.setShowFooter(true);
              }
-        }
+        },
+        onDownloadExcel: function () {
+            var oTable = this.byId("employeeTable");
+            var oModel = this.getView().getModel("employeeModel");
+            var aData = oModel.getProperty("/employees");
+
+            var aCols = this._createColumnConfig();
+
+            var oSettings = {
+                workbook: { columns: aCols },
+                dataSource: aData,
+                fileName: "EmployeeData.xlsx",
+                worker: false // true enables background export
+            };
+
+            var oSheet = new Spreadsheet(oSettings);
+            oSheet.build()
+                .then(function () {
+                    sap.m.MessageToast.show("Excel export done");
+                })
+                .catch(function (oError) {
+                    console.error("Export failed", oError);
+                });
+        },
+
+        _createColumnConfig: function () {
+            return [
+                { label: "Employee ID", property: "employeeId", type: "string" },
+                { label: "First Name", property: "firstName", type: "string" },
+                { label: "Last Name", property: "lastName", type: "string" },
+                { label: "Designation", property: "designation", type: "string" },
+                { label: "Department", property: "department", type: "string" },
+                { label: "Email", property: "email", type: "string" },
+                { label: "Contact Number", property: "contactNumber", type: "string" },
+                { label: "Location", property: "location", type: "string" },
+                { label: "Status", property: "status", type: "string" },
+                { label: "Salary", property: "salary", type: "number", scale: 2 }
+            ];
+        },
+
+
+        // onLoginPress: function () {
+        //     // Hardcoded test input values (simulate user input)
+        //     var username = "admin";
+        //     var password = "secure123";
+      
+        //     const validUser = {
+        //       username: "admin",
+        //       password: "secure123",
+        //       role: "admin"
+        //     };
+      
+        //     if (username === validUser.username && password === validUser.password) {
+        //       if (validUser.role === "admin") {
+        //         MessageBox.information("Welcome, Admin! Access granted.");
+        //         // You can call any local admin function here
+        //         this._adminAccess();
+        //       } else {
+        //         MessageBox.information("Welcome, User! Access granted.");
+        //         this._userAccess();
+        //       }
+        //     } else {
+        //       MessageBox.error("Login failed. Incorrect username or password.");
+        //       this._denyAccess();
+        //     }
+        //   },
+      
+        //   _adminAccess: function () {
+        //     // Minimal admin logic
+        //     // e.g., enable admin features or simulate something
+        //   },
+      
+        //   _userAccess: function () {
+        //     // Minimal user logic
+        //   },
+      
+        //   _denyAccess: function () {
+        //     // Optional: reset or disable inputs (if connected to a view)
+        //   }
+      
+
+        
     
         
         
